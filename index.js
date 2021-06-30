@@ -33,7 +33,7 @@ app.post('/securepay-wihtout-banklist', (req, res) => {
 	// change with your token from securepay
 	const uuid = process.env.SECUREPAY_UUID //|| "9097b595-b77a-4321-94c0-0a6d323b5252"
 	const auth = process.env.SECUREPAY_AUTH //|| "f4e4f07afb72a56fc6681d652713522436b50f087306efec39ab7d1be5b8c684"
-	const checksum = process.env.SECUREPAY_CHECKSUM || "5BXhsTmVmRBKkg6xizNB"
+	const checksum = process.env.SECUREPAY_CHECKSUM // || "5BXhsTmVmRBKkg6xizNB"
 	const url = "https://sandbox.securepay.my/api/v1/payments"
 	// get data from form
 	// const order_number = '20200425132755'
@@ -95,9 +95,9 @@ app.post('/securepay-wihtout-banklist', (req, res) => {
 
 app.post('/securepay-with-banklist', (req, res) => {
 	// change with your token from securepay
-	const uuid = "9097b595-b77a-4321-94c0-0a6d323b5252"
-	const auth = "f4e4f07afb72a56fc6681d652713522436b50f087306efec39ab7d1be5b8c684"
-	const checksum = "5BXhsTmVmRBKkg6xizNB"
+	const uuid = process.env.SECUREPAY_UUID //|| "9097b595-b77a-4321-94c0-0a6d323b5252"
+	const auth = process.env.SECUREPAY_AUTH //|| "f4e4f07afb72a56fc6681d652713522436b50f087306efec39ab7d1be5b8c684"
+	const checksum = process.env.SECUREPAY_CHECKSUM // || "5BXhsTmVmRBKkg6xizNB"
 	const url = "https://sandbox.securepay.my/api/v1/payments"
 	// get data from form
 	// const order_number = '20200425132755'
