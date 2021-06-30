@@ -36,4 +36,4 @@ const checksum = ''//your checksum
 * [Twitter](https://twitter.com/bangsyir)
 * [LinkedIn](https://www.linkedin.com/in/syirra-fitrah-763672193/)
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+[ISC](https://www.isc.org/licenses/)
