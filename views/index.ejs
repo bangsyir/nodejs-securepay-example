@@ -1,0 +1,96 @@
+<!-- author : @bangsyir -->
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	 <link rel="icon" href="https://www.securepay.my/wp-content/uploads/2020/07/favicon-securepay.png" type="image/png" sizes="16x16"> 
+	<title><%= pageTitle %></title>
+	<style>
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		.container {
+			padding-left: 2rem;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h3>Form without bank list</h3>
+		<form action="/securepay-wihtout-banklist" method="post">
+		  <label for="name">Full name:</label><br>
+		  <input type="text" id="name" name="name" value="John Doe"><br>
+		  <label for="email">Email:</label><br>
+		  <input type="email" id="email" name="email" value="john@gmail.com"><br>
+		  <label for="phone">Phone No:</label><br>
+		  <input type="text" id="phone" name="phone" value="+60129997979"><br>
+		  <label for="order_number">Order number:</label><br>
+		  <input type="text" id="order_number" name="order_number" value="<%= order_number %>"><br>
+		  <label for="description">Descriptions:</label><br>
+		  <input type="text" id="description" name="description" value="Payment for order no. <%= order_number %>"><br>
+
+		  <label for="callback_url">Callback URL:</label><br>
+		  <input type="text" id="callback_url" name="callback_url" value="" placeholder="Optional"><br>
+
+		  <label for="redirect_url">Redirect URL:</label><br>
+		  <input type="text" id="redirect_url" name="redirect_url" value="" placeholder="Optional"><br>
+
+		  <label for="amount">Amount:</label><br>
+		  <input type="text" id="amount" name="amount" value="199"><br>
+		  <br>
+		  <input type="submit" value="Submit">
+		</form>
+		<hr>
+		<h3>Form with bank list</h3>
+		<form action="/securepay-with-banklist" method="post">
+		  <label for="name">Full name:</label><br>
+		  <input type="text" id="name" name="name" value="John Doe"><br>
+		  <label for="email">Email:</label><br>
+		  <input type="text" id="email" name="email" value="john@gmail.com"><br>
+		  <label for="phone">Phone No:</label><br>
+		  <input type="text" id="phone" name="phone" value="+60129997979"><br>
+		  <label for="order_number">Order number:</label><br>
+		  <input type="text" id="order_number" name="order_number" value="<%= order_number %>"><br>
+		  <label for="description">Descriptions:</label><br>
+		  <input type="text" id="description" name="description" value="Payment for order no. <%= order_number %>"><br>
+
+		  <label for="callback_url">Callback URL:</label><br>
+		  <input type="text" id="callback_url" name="callback_url" value="" placeholder="Optional"><br>
+
+		  <label for="redirect_url">Redirect URL:</label><br>
+		  <input type="text" id="redirect_url" name="redirect_url" value="" placeholder="Optional"><br>
+
+		  <label for="amount">Amount:</label><br>
+		  <input type="text" id="amount" name="amount" value="199"><br>
+
+		  <label for="buyer_bank_code">Select bank:</label><br>
+		  <select id="buyer_bank_code" name="bank_code" onclick="getBankCode()">
+		  	<option>Select a bank</option>
+		  </select><br>
+		  <br>
+		  <input type="submit" value="Submit">
+		</form>
+	</div>
+	<script>
+		const bank_code = document.getElementById('buyer_bank_code')
+		// get bank list from securepay and load to select element
+		function getBankCode() {
+			const xhr = new XMLHttpRequest()
+			xhr.onreadystatechange = function () {
+		        if (this.readyState == 4 && this.status == 200) {
+			        const data = JSON.parse(xhr.response)
+			        data.fpx_bankList.forEach(bankList => {
+						const option = document.createElement("option")
+						const text = document.createTextNode(bankList.name+"("+bankList.status_format1+")")
+						option.value = bankList.code
+						option.appendChild(text)
+						bank_code.appendChild(option)
+			        })
+		        }
+		    }
+			xhr.open("GET", "https://sandbox.securepay.my/api/public/v1/banks/b2c")
+			xhr.send()
+		}
+	</script>
+</body>
+</html>
