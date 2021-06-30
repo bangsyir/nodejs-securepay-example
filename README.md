@@ -4,7 +4,7 @@ Securepay is one of many Payment Gateway in Malaysia. Please visit their website
 
 You can read about securepay API at this [documentation](https://docs.securepay.my/api).
 
-build with :
+built with :
 | node version   | npm version |
 | -------------- | ------------|
 | 12.22.1       | 7.10.0      |
