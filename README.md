@@ -25,9 +25,9 @@ npm run dev
 Open index.js and change code value below with your token
 
 ```javascript
-const uuid = // your uuid
-const auth = // your auth_token
-const checksum = //your checksum
+const uuid = ''// your uuid
+const auth = ''// your auth_token
+const checksum = ''//your checksum
 ```
 ## Author
 * [@bangsyir](https://bangsyir.github.io/) (noob programmer)
